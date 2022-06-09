@@ -1,7 +1,8 @@
- stage('Git-Checkout') { 
+node {  
+    stage('Git-Checkout') { 
         // 
     }
-    stage('Clean-Compile') { 
+    stage('Clean-Complete') { 
         // 
     }
     stage('Package') { 
