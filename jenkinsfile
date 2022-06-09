@@ -1,0 +1,10 @@
+ stage('git-checkout') { 
+        // 
+    }
+    stage('clean-compile') { 
+        // 
+    }
+    stage('package') { 
+        // 
+    }
+}
