@@ -5,9 +5,9 @@ pipeline {
         stage('SCM-Checkout') { 
             steps {
                 git branch: 'main', credentialsId: 'git-cred', 
-				        url: 'https://github.com/cmisenga/web-app2.git'
+				        url:  'https://github.com/Cmisenga/web-app2.git'
             }
-        }
+        } 
         stage('clean-Compile') { 
             steps {
                 sh "${mavenhome}/bin/mvn clean compile"
