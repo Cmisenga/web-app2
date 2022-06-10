@@ -3,18 +3,19 @@ pipeline {
     stages {
             def mavenhome = tool name: 'mvn-home', type: 'maven'
         stage('SCM-Checkout') { 
-            steps {
-                git branch: 'main', credentialsId: 'git-cred', 
-				    url:  'https://github.com/Cmisenga/web-app2.git'
+            steps{
+	        echo "SCM-Checkout"
             }
         } 
         stage('clean-Compile') { 
             steps {
+	        echo "clean-compile"
                 sh "${mavenhome}/bin/mvn clean compile"
             }
         }
         stage('Package') { 
             steps {
+	        echo "package"
                 sh "${mavenhome}/bin/mvn package"
             }
         }
