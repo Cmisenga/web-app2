@@ -4,7 +4,8 @@ pipeline {
             def mavenhome = tool name: 'mvn-home', type: 'maven'
         stage('SCM-Checkout') { 
             steps{
-	        echo "SCM-Checkout"
+	      git branch: 'main" , creditialsId: 'git-cred'
+	      url: https://github.com/Cmisenga/web-app2.git 
             }
         } 
         stage('clean-Compile') { 
