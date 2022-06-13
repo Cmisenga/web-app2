@@ -1,13 +1,18 @@
 node {  
-    
-    def mvnhome = tool name: 'mvn-home', type: 'maven' 
-    stage('Git-Checkout') {
-        git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/Cmisenga/web-app2.git'
+    def mvnHome = tool name: 'Maven home', type: 'maven'
+    stage('SCM-Checkout') { 
+        git branch: 'main', credentialsId: 'git-hub-credentials', 
+		url:'https://github.com/Cmisenga/web-app2.git'
     }
-    stage('Clean-Compile') { 
-        sh "${mvnhome}/bin/mvn clean compile" 
+    stage('Maven clean-compile') { 
+        sh '${mvnHome}/bin/mvn clean compile'
     }
-    stage('Package') { 
-        sh "${mvnhome}/bin/mvn package"
+    stage('Maven package') { 
+        sh '${mvnHome}/bin/mvn clean package'
+    }
+    stage('Tomcat-Deployment') { 
+        sshagent(['ec2-user-tomcat']) {
+			sh 'scp -o StrictHostKeyChecking=no target/tomcat-demo.war ec2-user@172.31.93.94:/opt/tomcat/webapps'
+		}
     }
 }
